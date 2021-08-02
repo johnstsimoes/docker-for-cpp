@@ -4,15 +4,12 @@ LABEL maintainer="John Simoes" \
       description="Basic C++ for CircleCi repo." \
       version="0.1.0"
 
-RUN apk add --no-cache bash dpkg git vim
-RUN apk add --no-cache clang build-base llvm-static llvm-dev clang-static clang-dev
-RUN apk add --no-cache cmake
+RUN apk add --no-cache -f git cmake make g++
+RUN apk add --no-cache -f vim bash
 
-RUN ln -sf /usr/bin/clang /usr/bin/cc
-RUN ln -sf /usr/bin/clang++ /usr/bin/c++
-
-RUN ls -l /usr/bin/cc /usr/bin/c++
-
-RUN cc --version
-RUN c++ --version
+RUN git clone https://github.com/google/googletest.git /googletest \
+  && mkdir -p /googletest/build \
+  && cd /googletest/build \
+  && cmake .. && make && make install \
+  && cd / && rm -rf /googletest
 
