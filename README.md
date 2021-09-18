@@ -1,6 +1,6 @@
 # Dockerfile: docker-for-cpp
 
-Docker container for CircleCI C++ CI/CD with GoogleTest.
+Docker container for CircleCI C++ CI/CD with GoogleTest and other libraries.
 
 ## Useful commands:
 
@@ -23,4 +23,3 @@ docker buildx inspect --bootstrap
 docker login
 docker buildx build --platform linux/arm64,linux/amd64 -t johnstsimoes/cpp-ready --push .
 ```
-
